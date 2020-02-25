@@ -3,9 +3,16 @@ import "../styles/Navbar.css";
 
 // By importing the Navbar.css file, it is added to the DOM whenever this component loads
 
+const styles = {
+  nav: {
+    background: "	#008000",
+    justifyContent: "flex-end" 
+  }
+}
+
 function Navbar() {
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={styles.nav}>
       <a href="/">Welcome</a>
     </nav>
   );
