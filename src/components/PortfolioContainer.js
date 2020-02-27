@@ -15,14 +15,29 @@ class PortfolioContainer extends Component {
   };
 
   render() {
+    let displayPage;
+
+    switch(this.state.currentPage){
+      case ("About"):
+        displayPage=<About />;
+        break;
+      case ("Blog"):
+        displayPage=<Blog />;
+        break;
+      case ("Contact"):
+        displayPage=<Contact />;
+        break; 
+      default:
+        displayPage=<Home />;
+    }
+
     return (
       <div>
         <NavTabs
           currentPage={this.state.currentPage}
           handlePageChange={this.handlePageChange}
         />
-        Based on `this.state.currentPage`, render the appropriate component
-        here.
+        {displayPage}
       </div>
     );
   }
