@@ -13,11 +13,43 @@ class OmdbContainer extends Component {
     search: ""
   };
 
+  componentDidMount() {
+    this.searchMovies("The Matrix");
+  };
+
+  handleInputChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+      this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    this.searchMovies(this.state.search);
+  }
+
   searchMovies = query => {
     API.search(query)
-      .then(res => this.setState({ result: res.data }))
+      .then(res => {
+        this.setState({ result: res.data })
+        const notFound = {
+          Title: `Movie not found: ${this.state.search}`,
+          Poster: "https://media.giphy.com/media/14uQ3cOFteDaU/giphy.gif",
+          Director: "N/A",
+          Genre: "N/A",
+          Released: "N/A"
+        }
+        if(res.data.Response === "False"){
+          this.setState({ result: notFound });
+        } else {
+          this.setState({ result: res.data })
+        }
+      })
       .catch(err => console.log(err));
   };
+
 
   render() {
     return (
