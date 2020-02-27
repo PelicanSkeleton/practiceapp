@@ -39,7 +39,8 @@ class Form extends Component {
     };
     this.setState({
       firstName: "",
-      lastName: ""
+      lastName: "",
+      password: ""
     });
   };
 
